@@ -13,3 +13,4 @@ def publish_kafka(metadata: dict):
         topic="from-text",
         value=value
     )
+    producer.flush()
