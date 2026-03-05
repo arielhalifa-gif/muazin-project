@@ -1,3 +1,7 @@
 from pymongo import MongoClient
 
-clien = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:27017/')
+
+
+db = client['week-19-db-muazin']
+collection = db['podcasts']

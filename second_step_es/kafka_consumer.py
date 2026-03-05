@@ -25,10 +25,9 @@ def get_from_kafka():
 
             value = msg.value().decode("utf-8")
             order = json.loads(value)
+            yield order
     except KeyboardInterrupt:
         print("\n🔴 Stopping consumer")
 
     finally:
       consumer.close()
-
-    return order
