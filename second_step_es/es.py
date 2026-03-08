@@ -1,6 +1,7 @@
-import elasticsearch as es
+from elasticsearch import Elasticsearch
 from datetime import datetime
 
+es = Elasticsearch('http://localhost:9200')
 
 mapping = {"mapping": {
     "properties": {
@@ -11,3 +12,5 @@ mapping = {"mapping": {
             "stt": {'type': object}
     }
 }}
+
+response = es.indices.create(index='second step', body=mapping)
