@@ -15,7 +15,11 @@ import base64
 # print(f"Encoded bytes: {encoded_bytes}")
 # print(f"Encoded string: {encoded_string}")
 
-
+def get_list_threat_words(b64_encoded: str):
+    encoded_bytes = b64_encoded.encode('ascii')
+    decoded_bytes = base64.b64decode(encoded_bytes)
+    decoded_string = decoded_bytes.decode('utf-8')
+    return decoded_string
 
 encoded_string_threat = '''R2Vub2NpZGUsV2FyIENyaW1lcyxBcGFydGhlaWQsTWFzc2FjcmUsTmFrYmEsRGlz
         cGxhY2VtZW50LEh1bWFuaXRhcmlhbiBDcmlzaXMsQmxvY2thZGUsT2NjdXBhdGlvb
@@ -37,7 +41,7 @@ decoded_bytes2 = base64.b64decode(encoded_bytes2)
 decoded_string_threat = decoded_bytes_threat.decode('utf-8')
 decoded_string2 = decoded_bytes2.decode('utf-8')
 
-print(f"Encoded string: {encoded_string_threat}")
-print(f"Decoded string: {decoded_string_threat}")
-print(f"Encoded string2: {encoded_string2}")
-print(f"Decoded string2: {decoded_string2}")
+# print(f"Encoded string: {encoded_string_threat}")
+# print(f"Decoded string: {decoded_string_threat}")
+# print(f"Encoded string2: {encoded_string2}")
+# print(f"Decoded string2: {decoded_string2}")
