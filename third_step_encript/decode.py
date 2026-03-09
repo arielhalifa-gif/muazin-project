@@ -21,6 +21,8 @@ def get_list_threat_words(b64_encoded: str):
     decoded_string = decoded_bytes.decode('utf-8')
     return decoded_string
 
+
+
 encoded_string_threat = '''R2Vub2NpZGUsV2FyIENyaW1lcyxBcGFydGhlaWQsTWFzc2FjcmUsTmFrYmEsRGlz
         cGxhY2VtZW50LEh1bWFuaXRhcmlhbiBDcmlzaXMsQmxvY2thZGUsT2NjdXBhdGlvb
         ixSZWZ1Z2VlcyxJQ0MsQkRT'''

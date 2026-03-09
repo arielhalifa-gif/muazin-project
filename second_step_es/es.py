@@ -1,16 +1,26 @@
 from elasticsearch import Elasticsearch
+from elasticsearch.helpers import bulk
 from datetime import datetime
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 es = Elasticsearch('http://localhost:9200')
+def create_index():
+    mapping = {"mapping": {
+        "properties": {
+                "size": {"type": int},
+                "file_name": {'type': str},
+                "creation_date": {'type': datetime},
+                "last_modified_date": {'type': datetime},
+                "stt": {'type': object}
+        }
+    }}
 
-mapping = {"mapping": {
-    "properties": {
-            "size": {"type": int},
-            "file_name": {'type': str},
-            "creation_date": {'type': datetime},
-            "last_modified_date": {'type': datetime},
-            "stt": {'type': object}
-    }
-}}
+    response = es.indices.create(index='muazin', body=mapping)
+    logger.info('index created')
 
-response = es.indices.create(index='second step', body=mapping)
+def insert_bulk(actions):
+    bulk(es, actions)
+    logger.info('bulk inserted succesffully')
