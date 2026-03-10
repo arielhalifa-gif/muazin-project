@@ -14,7 +14,6 @@ def create_index():
                 "file_name": {'type': str},
                 "creation_date": {'type': datetime},
                 "last_modified_date": {'type': datetime},
-                "stt": {'type': object}
         }
     }}
 
@@ -24,3 +23,5 @@ def create_index():
 def insert_bulk(actions):
     bulk(es, actions)
     logger.info('bulk inserted succesffully')
+
+def send_metadata_to_es(actions: list):
