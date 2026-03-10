@@ -20,8 +20,9 @@ def create_index():
     response = es.indices.create(index='muazin', body=mapping)
     logger.info('index created')
 
-def insert_bulk(actions):
-    bulk(es, actions)
-    logger.info('bulk inserted succesffully')
+# def insert_bulk(actions):
+#     bulk(es, actions)
+#     logger.info('bulk inserted succesffully')
 
-def send_metadata_to_es(actions: list):
+def send_metadata_to_es(metadata: dict, hash):
+    es.index(index='muazin', id=hash, document=metadata)
