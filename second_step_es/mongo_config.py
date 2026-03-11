@@ -7,9 +7,9 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['week-19-db-muazin']
 collection = db['podcasts']
 
-def send_to_mongo(stt_file: str):
+def send_to_mongo(stt_file: str, hash_id):
     data = {
-        "id": uuid4,
+        "id": hash_id,
         "text": stt_file
     }
     result = collection.insert_one(data)

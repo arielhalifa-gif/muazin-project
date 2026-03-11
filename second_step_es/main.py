@@ -12,7 +12,7 @@ def run_elastic():
         stt = value['text_file']
         hash_id = calculate_hash_uuid(stt)
         #sending the stt file to mongo
-        send_to_mongo(stt)
+        send_to_mongo(stt, hash_id)
         send_metadata_to_es(metadata,hash_id)
 
 if __name__ == "__main__":
