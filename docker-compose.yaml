@@ -1,5 +1,50 @@
 version: '3.8'
 
 services:
-  data_reader:
-    build: .
+  first_step:
+    build: ./first_step_reading_from_file
+    container_name: first-step
+    ports:
+      - "8000:8000"
+
+  second_step:
+    build: ./second_step_es
+    container_name: second-step
+    ports:
+      - "8001:8001"
+
+  third_step:
+    build: ./third_step_encript
+    container_name: third-step
+    ports:
+      - "8002:8002"
+
+  kafka:
+    image: apache/kafka-native
+    ports:
+      - "9092:9092"
+    environment:
+      # Configure listeners for both docker and host communication
+      KAFKA_LISTENERS: CONTROLLER://localhost:9091,HOST://0.0.0.0:9092,DOCKER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: HOST://localhost:9092,DOCKER://kafka:9093
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9091
+      KAFKA_INTER_BROKER_LISTENER_NAME: DOCKER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  mongo:
+    image: mongodb/mongodb-atlas-local
+    hostname: mongodb
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=user
+      - MONGODB_INITDB_ROOT_PASSWORD=pass
+    ports:
+      - 27017:27017
+    volumes:
+      - db:/data/db
+
+
+volumes:
+  db:
