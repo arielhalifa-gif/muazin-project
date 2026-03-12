@@ -1,4 +1,7 @@
 from decode import get_list_threat_words
+from analitic_threat import calculate_threat_percentage
+from mongo_config import get_from_mongo
+
 import os
 from dotenv import load_dotenv
 
@@ -9,5 +12,8 @@ low_level_encoded = os.getenv('ENCODE_LEVEL_LOW')
 
 
 def run_decoding_service():
-    high_lelvel_list = get_list_threat_words(high_level_encoded).split()
-    low_level_list = get_list_threat_words(low_level_encoded).split()
+    for value in get_from_mongo():
+        high_lelvel_list = get_list_threat_words(high_level_encoded).split()
+        low_level_list = get_list_threat_words(low_level_encoded).split()
+        percent_bds = calculate_threat_percentage(high_lelvel_list, low_level_list, value)
+        

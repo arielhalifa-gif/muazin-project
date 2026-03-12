@@ -2,9 +2,11 @@ audioop-lts==0.2.2
 certifi==2026.2.25
 confluent-kafka==2.13.0
 dnspython==2.8.0
+dotenv==0.9.9
 elastic-transport==8.17.1
 elasticsearch==8.12.0
 pymongo==4.16.0
+python-dotenv==1.2.2
 SpeechRecognition==3.14.5
 standard-aifc==3.13.0
 standard-chunk==3.13.0
