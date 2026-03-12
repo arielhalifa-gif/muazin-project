@@ -10,4 +10,4 @@ collection = db['podcasts']
 def get_from_mongo():
     result = collection.find({}, {'_id': 0, })
     for value in result:
-        yield value['text']
+        yield value

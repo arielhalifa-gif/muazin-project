@@ -16,4 +16,7 @@ def update_mapping_for_es():
 def insert_percent_to_es(with_percent_bds, hash_id):
     es.index(index='muazin', id=hash_id, document=with_percent_bds)
     logger.info('inserted to elastic')
-    
+
+
+def build_new_document():
+    pass
